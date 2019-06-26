@@ -5,8 +5,10 @@
 package it.polito.tdp.borders;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.borders.model.Country;
 import it.polito.tdp.borders.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,8 +33,11 @@ public class BordersController {
 
 	@FXML
 	void doCalcolaConfini(ActionEvent event) {
-
-		txtResult.setText("Todo!");
+		int anno= Integer.parseInt(txtAnno.getText());
+		Map<Country, Integer> confini= model.calcolaConfini(anno);
+		for(Country c: confini.keySet()) {
+			this.txtResult.appendText(c+" "+confini.get(c));
+		}
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
